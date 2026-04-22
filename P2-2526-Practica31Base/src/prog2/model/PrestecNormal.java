@@ -13,17 +13,18 @@ public class PrestecNormal extends Prestec {
         super(exemplar, usuari, dataCreacio);
         this.tipusPrestec = tipusPrestec();
         this.retornat = false;
-        this.dataLimitRetorn = getDataLimitRetorn();
+        setDataLimitRetorn(dataCreacio);
     }
 
     @Override
     public void setDataLimitRetorn(Date data) {
-        this.dataLimitRetorn = getDataCreacio() + (Date) duradaPrestec();
+        Date novaData = new Date(data.getTime() + duradaPrestec());
+        this.dataLimitRetorn = novaData;
     }
 
     @Override
     public Date getDataLimitRetorn() {
-        return getDataCreacio() + (Date) duradaPrestec();
+        return dataLimitRetorn;
     }
 
     @Override
@@ -45,7 +46,11 @@ public class PrestecNormal extends Prestec {
     public void retorna() throws BiblioException {
         if (retornat)
             throw new BiblioException("L'exemplar ja ha estat retornat");
-        else retornat = false;
+        else {
+            retornat = true;
+            getUsuari().setNumPrestecsNormals(getUsuari().getNumPrestecsNormals() - 1);
+            getExemplar().setDisponible(true);
+        }
     }
 
     @Override

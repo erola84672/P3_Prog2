@@ -8,33 +8,13 @@ public class Estudiant extends Usuari {
     public Estudiant(String email, String nom, String adreca) {
         super(email, nom, adreca);
         this.tipusUsuari = tipusUsuari();
-        this.numPrestecsNormals = getMaxPrestecsNormals();
-        this.numPrestecsLlargs = getMaxPrestecsLlargs();
+        this.numPrestecsNormals = 0;
+        this.numPrestecsLlargs = 0;
     }
 
     @Override
     public String tipusUsuari() {
         return "Estudiant";
-    }
-
-    @Override
-    public void setNumPrestecsNormals(int numPrestecsNormals) {
-        this.numPrestecsNormals = numPrestecsNormals;
-    }
-
-    @Override
-    public int getNumPrestecsNormals() {
-        return numPrestecsNormals;
-    }
-
-    @Override
-    public void setNumPrestecsLlargs(int numPrestecsLlargs) {
-        this.numPrestecsLlargs = numPrestecsLlargs;
-    }
-
-    @Override
-    public int getNumPrestecsLlargs() {
-        return numPrestecsLlargs;
     }
 
     @Override
@@ -51,7 +31,6 @@ public class Estudiant extends Usuari {
     public String toString() {
         String info = "Tipus=" + tipusUsuari;
         info += super.toString();
-        info += ", Num. prestecs normals=" + numPrestecsNormals + ", Num. prestecs llargs=" + numPrestecsLlargs;
 
         return info;
     }

@@ -2,6 +2,7 @@ package prog2.model;
 
 import prog2.vista.BiblioException;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class LlistaExemplars extends Llista<Exemplar> {
@@ -20,5 +21,18 @@ public class LlistaExemplars extends Llista<Exemplar> {
             }
         }
         llista.add(exemplar);
+    }
+
+    public boolean contains(String id) {
+        Iterator<Exemplar> it = llista.iterator();
+        boolean trobat = false;
+
+        while (it.hasNext() && !trobat) {
+            Exemplar e = it.next();
+            if (e.getId().equals(id)) {
+                trobat = true;
+            }
+        }
+        return trobat;
     }
 }

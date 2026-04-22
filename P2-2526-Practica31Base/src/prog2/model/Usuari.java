@@ -6,11 +6,15 @@ public abstract class Usuari implements InUsuari, Serializable {
     private String email;
     private String nom;
     private String adreca;
+    private int numPrestecsNormals;
+    private int numPrestecsLlargs;
 
     public Usuari(String email, String nom, String adreca) {
         this.email = email;
         this.nom = nom;
         this.adreca = adreca;
+        this.numPrestecsLlargs = 0;
+        this.numPrestecsNormals = 0;
     }
 
     @Override
@@ -47,16 +51,24 @@ public abstract class Usuari implements InUsuari, Serializable {
     public abstract String tipusUsuari();
 
     @Override
-    public abstract void setNumPrestecsNormals(int numPrestecsNormals);
+    public void setNumPrestecsNormals(int numPrestecsNormals) {
+        this.numPrestecsNormals = numPrestecsNormals;
+    }
 
     @Override
-    public abstract int getNumPrestecsNormals();
+    public int getNumPrestecsNormals() {
+        return numPrestecsNormals;
+    }
 
     @Override
-    public abstract void setNumPrestecsLlargs(int numPrestecstLlargs);
+    public void setNumPrestecsLlargs(int numPrestecsLlargs) {
+        this.numPrestecsLlargs = numPrestecsLlargs;
+    }
 
     @Override
-    public abstract int getNumPrestecsLlargs();
+    public int getNumPrestecsLlargs() {
+        return numPrestecsLlargs;
+    }
 
     @Override
     public abstract int getMaxPrestecsNormals();
@@ -67,6 +79,7 @@ public abstract class Usuari implements InUsuari, Serializable {
     @Override
     public String toString() {
         String info = ", Email=" + email + ", Nom=" + nom + ", Adreca=" + adreca;
+        info += ", Num. prestecs normals=" + numPrestecsNormals + ", Num. prestecs llargs=" + numPrestecsLlargs;
         return info;
     }
 

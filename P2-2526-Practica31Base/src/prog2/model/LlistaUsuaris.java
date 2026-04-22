@@ -20,5 +20,18 @@ public class LlistaUsuaris extends Llista<Usuari> {
             }
             llista.add(usuari);
     }
+
+    public boolean contains(String email) {
+        Iterator<Usuari> it = llista.iterator();
+        boolean trobat = false;
+
+        while (it.hasNext() && !trobat) {
+            Usuari e = it.next();
+            if (e.getEmail().equals(email)) {
+                trobat = true;
+            }
+        }
+        return trobat;
+    }
 }
 

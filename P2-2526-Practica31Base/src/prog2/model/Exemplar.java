@@ -9,7 +9,7 @@ public class Exemplar implements InExemplar, Serializable {
     private boolean admetPrestecLlarg;
     private boolean disp;
 
-    public Exemplar(String id, String autor, String titol, boolean admetPrestecLlarg) {
+    public Exemplar(String id, String titol, String autor, boolean admetPrestecLlarg) {
         this.id = id;
         this.autor = autor;
         this.titol = titol;
@@ -57,11 +57,11 @@ public class Exemplar implements InExemplar, Serializable {
         return admetPrestecLlarg;
     }
 
-    public boolean isDisp() {
+    public boolean isDisponible() {
         return disp;
     }
 
-    public void setDisp(boolean disp) {
+    public void setDisponible(boolean disp) {
         this.disp = disp;
     }
 
