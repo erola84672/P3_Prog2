@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.BiblioException;
 
-public class Llista<T> implements Serializable, InLlista {
+public class Llista<T> implements Serializable, InLlista<T> {
    protected ArrayList<T> llista;
 
    public Llista() {
@@ -26,10 +26,10 @@ public class Llista<T> implements Serializable, InLlista {
     /**
      * Afegir element a la llista. Afegeix l'element t a la llista
      */
-    public void afegir(T t) throws BiblioException {
-          llista.add(t);
-    }
 
+    public void afegir(T t) throws BiblioException{
+        llista.add(t);
+    }
     /**
      * Esborrar element de la llista. Esborra l'element t a la llista
      */

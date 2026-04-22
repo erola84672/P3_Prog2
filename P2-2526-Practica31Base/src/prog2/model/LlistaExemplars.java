@@ -19,5 +19,6 @@ public class LlistaExemplars extends Llista<Exemplar> {
                 throw new BiblioException("L'exemplar ja és a la llista");
             }
         }
+        llista.add(exemplar);
     }
 }

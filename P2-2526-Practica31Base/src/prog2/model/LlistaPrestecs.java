@@ -1,4 +1,7 @@
 package prog2.model;
 
-public class LlistaPrestecs extends Llista {
+public class LlistaPrestecs extends Llista<Prestec> {
+    public LlistaPrestecs(){
+        super();
+    }
 }
