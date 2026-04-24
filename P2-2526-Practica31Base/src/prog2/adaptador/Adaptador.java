@@ -22,9 +22,10 @@ public class Adaptador {
         try {
             fos = new FileOutputStream(file);
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(this);
+            oos.writeObject(dades);
             System.out.println("Dades guardades correctament");
         } catch(IOException e){
+            e.printStackTrace();
             throw new BiblioException("No s'han pogut guardar les dades");
 
         }
@@ -33,6 +34,7 @@ public class Adaptador {
                 fos.close();
                 oos.close();
             } catch (IOException e) {
+                e.printStackTrace();
                 throw new BiblioException("No s'ha pogut tancar el fitxer");
             }
         }
@@ -49,6 +51,7 @@ public class Adaptador {
             this.dades = (Dades) ois.readObject();
 
         } catch(Exception e){
+            e.printStackTrace();
             throw new BiblioException("No s'han pogut recuperar les dades");
         }
         finally{
@@ -56,6 +59,7 @@ public class Adaptador {
                 fis.close();
                 ois.close();
             } catch(Exception e){
+                e.printStackTrace();
                 throw new BiblioException("No s'ha pogut tancar el fitxer");
             }
         }
@@ -114,15 +118,15 @@ public class Adaptador {
         return lines;
     }
 
-    public void afegirExemplar(String id, String autor, String titol, boolean admetPrestecLlarg) {
+    public void afegirExemplar(String id, String autor, String titol, boolean admetPrestecLlarg) throws BiblioException {
         dades.afegirExemplar(id, autor, titol, admetPrestecLlarg);
     }
 
-    public void afegirUsuari(String email, String nom, String adreca, boolean esEstudiant) {
+    public void afegirUsuari(String email, String nom, String adreca, boolean esEstudiant) throws BiblioException {
         dades.afegirUsuari(email, nom, adreca, esEstudiant);
     }
 
-    public void afegirPrestec(String email, String id, boolean tipus) throws BiblioException{
+    public void afegirPrestec(String email, String id, boolean tipus) throws BiblioException {
         int exemplarPos = 0, usuariPos = 0;
         boolean trobat = false;
         ArrayList<Exemplar> le = dades.recuperaExemplars();
@@ -156,7 +160,7 @@ public class Adaptador {
         dades.afegirPrestec(exemplarPos, usuariPos, tipus);
     }
 
-    public void retornarPrestec(String id) {
+    public void retornarPrestec(String id) throws BiblioException {
         int position = 0;
         boolean trobat = false;
         ArrayList<Prestec> lp = dades.recuperaPrestecs();

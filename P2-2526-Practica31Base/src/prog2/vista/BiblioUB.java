@@ -186,7 +186,11 @@ public class BiblioUB {
         admetPrestecLlarg = sc.nextBoolean();
         sc.nextLine();
 
-        adaptador.afegirExemplar(id, autor, titol, admetPrestecLlarg);
+        try {
+            adaptador.afegirExemplar(id, autor, titol, admetPrestecLlarg);
+        } catch (BiblioException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void menuGestioUsuaris(Scanner sc) {
@@ -230,7 +234,11 @@ public class BiblioUB {
         esEstudiant = sc.nextBoolean();
         sc.nextLine();
 
-        adaptador.afegirUsuari(email, nom, adreca, esEstudiant);
+        try {
+            adaptador.afegirUsuari(email, nom, adreca, esEstudiant);
+        } catch (BiblioException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void menuGestioPrestecs(Scanner sc) {
@@ -279,7 +287,11 @@ public class BiblioUB {
         tipus = sc.nextBoolean();
         sc.nextLine();
 
-        adaptador.afegirPrestec(email, id, tipus);
+        try {
+            adaptador.afegirPrestec(email, id, tipus);
+        } catch (BiblioException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void cancelarPrestec(Scanner sc){
@@ -288,7 +300,12 @@ public class BiblioUB {
         System.out.println("Introdueix l'ID de l'exemplar que es vol retornar");
         id = sc.nextLine();
 
-        adaptador.retornarPrestec(id);
+        try {
+            // diu que l'exemplar ja ha estat retornat si el préstec està endarrerit, tot i q marca exemplar com a no disponible i retornat = false
+            adaptador.retornarPrestec(id);
+        } catch (BiblioException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
