@@ -146,6 +146,25 @@ public class BiblioUB {
     }
     
     private void menuGestioExemplars(Scanner sc) {
+        Menu<OpcionsMenuGestioExemplars> menu = new Menu<>("Menú exemplars", OpcionsMenuGestioExemplars.values());
+        menu.setDescripcions(descMenuGestioExemplars);
+        OpcionsMenuGestioExemplars opcio;
+
+        do {
+            menu.mostrarMenu();
+            opcio = menu.getOpcio(sc);
+
+            switch(opcio) {
+                case MENU_GESTIO_EXEMPLARS_ADD:
+                    afegirExemplar(sc);
+                    break;
+
+                case MENU_GESTIO_EXEMPLARS_VIEW:
+                    showList("Llista d'exemplars", adaptador.toStringLlistaExemplars());
+                    break;
+
+            }
+        } while(opcio != OpcionsMenuGestioExemplars.MENU_GESTIO_EXEMPLARS_EXIT);
     }
     
     /**
@@ -154,9 +173,42 @@ public class BiblioUB {
      */
     
     private void afegirExemplar(Scanner sc){
+        String id, autor, titol;
+        boolean admetPrestecLlarg;
+
+        System.out.println("Introdueix l'ID del nou exemplar");
+        id = sc.nextLine();
+        System.out.println("Introdueix l'autor del nou exemplar");
+        autor = sc.nextLine();
+        System.out.println("Introdueix el títol del nou exemplar");
+        titol = sc.nextLine();
+        System.out.println("L'exemplar admet préstec llargs? (true, false)");
+        admetPrestecLlarg = sc.nextBoolean();
+        sc.nextLine();
+
+        adaptador.afegirExemplar(id, autor, titol, admetPrestecLlarg);
     }
 
     private void menuGestioUsuaris(Scanner sc) {
+        Menu<OpcionsMenuGestioClients> menu = new Menu<>("Menú usuaris", OpcionsMenuGestioClients.values());
+        menu.setDescripcions(descMenuGestioUsuaris);
+        OpcionsMenuGestioClients opcio;
+
+        do {
+            menu.mostrarMenu();
+            opcio = menu.getOpcio(sc);
+
+            switch(opcio) {
+                case MENU_GESTIO_USUARIS_ADD:
+                    afegirUsuari(sc);
+                    break;
+
+                case MENU_GESTIO_USUARIS_VIEW:
+                    showList("Llista d'usuaris", adaptador.toStringLlistaUsuaris());
+                    break;
+
+            }
+        } while(opcio != OpcionsMenuGestioClients.MENU_GESTIO_USUARIS_EXIT);
     }
     
     /**
@@ -165,9 +217,49 @@ public class BiblioUB {
      */
     
     private void afegirUsuari(Scanner sc){
+        String email, nom, adreca;
+        boolean esEstudiant;
+
+        System.out.println("Introdueix l'email del nou usuari");
+        email = sc.nextLine();
+        System.out.println("Introdueix el nom del nou usuari");
+        nom = sc.nextLine();
+        System.out.println("Introdueix l'adreça del nou usuari");
+        adreca = sc.nextLine();
+        System.out.println("El nou usuari és un estudiant? (true, false)");
+        esEstudiant = sc.nextBoolean();
+        sc.nextLine();
+
+        adaptador.afegirUsuari(email, nom, adreca, esEstudiant);
     }
 
     private void menuGestioPrestecs(Scanner sc) {
+        Menu<OpcionsMenuGestioPrestecs> menu = new Menu<>("Menú préstecs", OpcionsMenuGestioPrestecs.values());
+        menu.setDescripcions(descMenuGestioPrestecs);
+        OpcionsMenuGestioPrestecs opcio;
+
+        do {
+            menu.mostrarMenu();
+            opcio = menu.getOpcio(sc);
+
+            switch(opcio) {
+                case MENU_GESTIO_PRESTECS_ADD:
+                    afegirPrestec(sc);
+                    break;
+
+                case MENU_GESTIO_PRESTECS_REMOVE:
+                    cancelarPrestec(sc);
+                    break;
+
+                case MENU_GESTIO_PRESTECS_VIEW:
+                    showList("Llista de préstecs", adaptador.toStringLlistaPrestecs());
+                    break;
+
+                case MENU_GESTIO_PRESTECS_VIEW_URG:
+                    showList("Llista de préstecs no retornats", adaptador.toStringLlistaPrestecsNoRetornats());
+                    break;
+            }
+        } while(opcio != OpcionsMenuGestioPrestecs.MENU_GESTIO_PRESTECS_EXIT);
     }
     
     /**
@@ -176,9 +268,28 @@ public class BiblioUB {
      */
     
     private void afegirPrestec(Scanner sc){
+        String email, id;
+        boolean tipus;
+
+        System.out.println("Introdueix l'email de l'usuari que demana el préstec");
+        email = sc.nextLine();
+        System.out.println("Introdueix l'ID de l'exemplar que es vol demanar");
+        id = sc.nextLine();
+        System.out.println("El préstec és de llarga durada? (true, false)");
+        tipus = sc.nextBoolean();
+        sc.nextLine();
+
+        adaptador.afegirPrestec(email, id, tipus);
     }
 
     private void cancelarPrestec(Scanner sc){
+        String id;
+
+        System.out.println("Introdueix l'ID de l'exemplar que es vol retornar");
+        id = sc.nextLine();
+
+        adaptador.retornarPrestec(id);
+
     }
 
      /**

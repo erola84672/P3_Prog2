@@ -17,8 +17,7 @@ public class LlistaPrestecs extends Llista<Prestec> {
             throw new BiblioException("Aquest exemplar no està disponible");
 
         Usuari u = prestec.getUsuari();
-        ArrayList<Prestec> llistaP = getArrayList();
-        Iterator<Prestec> it = llistaP.iterator();
+        Iterator<Prestec> it = llista.iterator();
 
         while (it.hasNext()) {
             Prestec p = it.next();

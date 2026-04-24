@@ -13,13 +13,12 @@ public class PrestecNormal extends Prestec {
         super(exemplar, usuari, dataCreacio);
         this.tipusPrestec = tipusPrestec();
         this.retornat = false;
-        setDataLimitRetorn(dataCreacio);
+        this.dataLimitRetorn = new Date(dataCreacio.getTime() + duradaPrestec());
     }
 
     @Override
     public void setDataLimitRetorn(Date data) {
-        Date novaData = new Date(data.getTime() + duradaPrestec());
-        this.dataLimitRetorn = novaData;
+        this.dataLimitRetorn = data;
     }
 
     @Override
